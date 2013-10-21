@@ -53,34 +53,36 @@ app.get('/', function (req, res) {
 });
 
 app.get('/books', function (req, res) {
-    var cols = ['title', 'author', 'number', 'publicationDate'],
-        iDisplayLength = req.query.iDisplayLength,
-        iDisplayStart = req.query.iDisplayStart,
-        iSortCol_0 = req.query.iSortCol_0,
-        sSortDir_0 = req.query.sSortDir_0,
-        sEcho = req.query.sEcho;
+    var params = req.query,
+        cols = [
+            params.mDataProp_0,
+            params.mDataProp_1,
+            params.mDataProp_2,
+            params.mDataProp_3
+        ],
+        iDisplayLength = params.iDisplayLength,
+        iDisplayStart = params.iDisplayStart,
+        iSortCol_0 = params.iSortCol_0,
+        sSortDir_0 = params.sSortDir_0,
+        sEcho = params.sEcho;
 
-    var q1 = BookModel.find();
+    var sortCol = cols[iSortCol_0],
+        sortDir = (sSortDir_0 === 'desc') ? '-' + sortCol: sortCol;
+
+    var q1 = BookModel.find(),
+        q2 = BookModel.find().sort(sortDir).limit(iDisplayLength).skip(iDisplayStart);
 
     q1.execFind(function (err, books) {
-        var total = books.length;
-        var sortCol = cols[iSortCol_0];
-        var sortDir = (sSortDir_0 === 'desc') ? '-' : '';
-        var q2 = BookModel
-            .find()
-            .sort(sortDir + sortCol)
-            .limit(iDisplayLength)
-            .skip(iDisplayStart);
+        var iTotalRecords = books.length;
 
         q2.execFind(function (err, books) {
-            var map = {};
-
             if (!err) {
-                map.sEcho = parseInt(sEcho, 10);
-                map.iTotalRecords = total;
-                map.iTotalDisplayRecords = total;
-                map.aaData = books;
-                res.send(map);
+                res.send({
+                    sEcho: parseInt(sEcho, 10),
+                    iTotalRecords: iTotalRecords,
+                    iTotalDisplayRecords: iTotalRecords,
+                    aaData: books
+                });
             } else {
                 return console.log(err);
             }
