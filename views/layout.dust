@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+    <title>{title}</title>
+    <link href="css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h1>{title}</h1>
+    {+content}
+        Content
+    {/content}
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    {+scripts}
+        Scripts
+    {/scripts}
+</body>
+</html>

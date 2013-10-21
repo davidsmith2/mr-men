@@ -1,0 +1,6 @@
+<tr>
+    <td>{iDisplayStart}</td>
+    <td>{author}</td>
+    <td>{number}</td>
+    <td>{publicationDate}</td>
+</tr>

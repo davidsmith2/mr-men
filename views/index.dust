@@ -1,0 +1,53 @@
+    {>layout/}
+    {<content}
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Number</th>
+                    <th>Publication Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            {#books}
+                <tr>
+                    <td>{title}</td>
+                    <td>{author}</td>
+                    <td>{number}</td>
+                    <td>{publicationDate}</td>
+                </tr>
+            {/books}
+            </tbody>
+        </table>
+    {/content}
+    {<scripts}
+        <script src="js/lib/jquery.dataTables.js"></script>
+        <script>
+    $(function () {
+        $('table').dataTable({
+            aLengthMenu: [5, 10, 20],
+            aoColumns: [
+                {
+                    mDataProp: 'title'
+                },
+                {
+                    mDataProp: 'author'
+                },
+                {
+                    mDataProp: 'number'
+                },
+                {
+                    mDataProp: 'publicationDate'
+                }
+            ],
+            bDeferRender: true,
+            bFilter: false,
+            bServerSide: true,
+            iDisplayLength: 5,
+            sAjaxSource: '/books',
+            sPaginationType: 'full_numbers'
+        });
+    });
+        </script>
+    {/scripts}
