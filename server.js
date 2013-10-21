@@ -52,10 +52,6 @@ app.get('/', function (req, res) {
     });
 });
 
-
-
-
-
 app.get('/books', function (req, res) {
     var iDisplayLength = req.query.iDisplayLength,
         iDisplayStart = req.query.iDisplayStart,
@@ -81,14 +77,7 @@ app.get('/books', function (req, res) {
             }
         });
     });
-
-
-
 });
-
-
-
-
 
 app.get('/api', function (req, res) {
     return res.send('API is running');
