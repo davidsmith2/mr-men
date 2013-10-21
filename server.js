@@ -53,15 +53,24 @@ app.get('/', function (req, res) {
 });
 
 app.get('/books', function (req, res) {
-    var iDisplayLength = req.query.iDisplayLength,
+    var cols = ['title', 'author', 'number', 'publicationDate'],
+        iDisplayLength = req.query.iDisplayLength,
         iDisplayStart = req.query.iDisplayStart,
+        iSortCol_0 = req.query.iSortCol_0,
+        sSortDir_0 = req.query.sSortDir_0,
         sEcho = req.query.sEcho;
 
     var q1 = BookModel.find();
 
     q1.execFind(function (err, books) {
         var total = books.length;
-        var q2 = BookModel.find().limit(iDisplayLength).skip(iDisplayStart);
+        var sortCol = cols[iSortCol_0];
+        var sortDir = (sSortDir_0 === 'desc') ? '-' : '';
+        var q2 = BookModel
+            .find()
+            .sort(sortDir + sortCol)
+            .limit(iDisplayLength)
+            .skip(iDisplayStart);
 
         q2.execFind(function (err, books) {
             var map = {};
