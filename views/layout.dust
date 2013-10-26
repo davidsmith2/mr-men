@@ -1,13 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>{title}</title>
     <link href="css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <style>
-.text-center {
-    text-align:center;
-}
-    </style>
+    <link href="css/app.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <h1>{title}</h1>
@@ -16,8 +12,7 @@
     {/content}
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    {+scripts}
-        Scripts
-    {/scripts}
+    <script src="js/lib/jquery.dataTables.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
