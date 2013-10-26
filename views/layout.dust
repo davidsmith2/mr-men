@@ -3,6 +3,11 @@
 <head>
     <title>{title}</title>
     <link href="css/lib/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <style>
+.text-center {
+    text-align:center;
+}
+    </style>
 </head>
 <body>
     <h1>{title}</h1>
