@@ -38,6 +38,7 @@ app.listen(port, function () {
 var db = mongoose.connect(databaseUrl);
 
 var Book = new mongoose.Schema({
+    image: String,
     title: String,
     author: String,
     number: Number,

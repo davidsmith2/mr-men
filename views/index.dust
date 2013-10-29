@@ -3,6 +3,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Title</th>
                     <th>Author</th>
                     <th>Number</th>
@@ -10,44 +11,6 @@
                 </tr>
             </thead>
             <tbody>
-            {#books}
-                <tr>
-                    <td>{title}</td>
-                    <td>{author}</td>
-                    <td>{number}</td>
-                    <td>{publicationDate}</td>
-                </tr>
-            {/books}
             </tbody>
         </table>
     {/content}
-    {<scripts}
-        <script src="js/lib/jquery.dataTables.js"></script>
-        <script>
-    $(function () {
-        $('table').dataTable({
-            aLengthMenu: [[25, 50, 100, 250, 500, 1000, -1], [25, 50, 100, 250, 500, 1000, "All"]],
-            aoColumns: [
-                {
-                    mDataProp: 'title'
-                },
-                {
-                    mDataProp: 'author'
-                },
-                {
-                    mDataProp: 'number'
-                },
-                {
-                    mDataProp: 'publicationDate'
-                }
-            ],
-            bDeferRender: true,
-            bFilter: false,
-            bServerSide: true,
-            iDisplayLength: 5,
-            sAjaxSource: '/books',
-            sPaginationType: 'full_numbers'
-        });
-    });
-        </script>
-    {/scripts}
