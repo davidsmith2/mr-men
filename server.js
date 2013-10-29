@@ -59,7 +59,8 @@ app.get('/books', function (req, res) {
             params.mDataProp_0,
             params.mDataProp_1,
             params.mDataProp_2,
-            params.mDataProp_3
+            params.mDataProp_3,
+            params.mDataProp_4
         ],
         iDisplayLength = params.iDisplayLength,
         iDisplayStart = params.iDisplayStart,
