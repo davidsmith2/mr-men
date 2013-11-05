@@ -38,4 +38,31 @@ $(function () {
         sAjaxSource: '/books',
         sPaginationType: 'full_numbers'
     });
+
+    $('#create_pdf_form').submit(function () {
+        blockUIForDownload();
+    });
+
+    var fileDownloadCheckTimer;
+
+    function blockUIForDownload () {
+        var token = new Date().getTime();
+
+        $('#download_token_value_id').val(token);
+        $.blockUI();
+        fileDownloadCheckTimer = window.setInterval(function () {
+            var cookieValue = $.cookie('fileDownloadToken');
+
+            if (cookieValue == token) {
+                finishDownload();
+            }
+        }, 1000);
+    }
+
+    function finishDownload () {
+        window.clearInterval(fileDownloadCheckTimer);
+        $.removeCookie('fileDownloadToken');
+        $.unblockUI();
+    }
+
 });

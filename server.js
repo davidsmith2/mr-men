@@ -12,6 +12,7 @@ app.configure(function () {
     app.set('view engine', 'dust');
     app.set('views', __dirname + '/views');
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(
@@ -91,6 +92,15 @@ app.get('/books', function (req, res) {
         });
     });
 });
+
+
+
+app.post('/download', function (req, res) {
+    res.cookie('fileDownloadToken', req.body.download_token_value_id, { maxAge: 900000, httpOnly: false} );
+    res.render('index');
+});
+
+
 
 app.get('/api', function (req, res) {
     return res.send('API is running');
