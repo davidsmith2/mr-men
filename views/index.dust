@@ -1,19 +1,8 @@
     {>layout/}
     {<content}
-        <form action="/download" id="create_pdf_form" method="post">
-            <fieldset>
-                <legend>Create Customer Info Sheet PDF</legend>
-                <div>
-                    <label id="first_name_prompt_id" for="first_name_input_id">First Name</label>
-                    <input name="first_name_input" id="first_name_input_id" />
-                </div>
-                <div>
-                    <label id="last_name_prompt_id" for="last_name_input_id">Last Name</label>
-                    <input name="last_name_input" id="last_name_input_id" />
-                </div>
-                <input type="hidden" id="download_token_value_id" name="download_token_value_id" />
-                <input type="submit" value="Create File" />
-            </fieldset>
+        <form action="/download" id="download_form" method="post">
+            <input id="download_token_value_id" name="download_token_value_id" type="hidden" />
+            <input type="submit" value="Export to CSV" />
         </form>
         <table>
             <thead>

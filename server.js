@@ -93,14 +93,31 @@ app.get('/books', function (req, res) {
     });
 });
 
-
-
 app.post('/download', function (req, res) {
-    res.cookie('fileDownloadToken', req.body.download_token_value_id, { maxAge: 900000, httpOnly: false} );
-    res.render('index');
+    return BookModel.find(function (err, books) {
+        var filename = 'mr-men.csv';
+
+        if (!err) {
+            res.cookie('fileDownloadToken', req.body.download_token_value_id, { maxAge: 900000, httpOnly: false} );
+            res.attachment(filename);
+            res.send(200);
+
+            books.forEach(function (book) {
+                var data = [];
+
+                data.push(book.title);
+                data.push(book.author);
+                data.push(book.number);
+                data.push(book.publicationDate);
+
+                res.write(data + '\n');
+            });
+
+        } else {
+            return console.log(err);
+        }
+    });
 });
-
-
 
 app.get('/api', function (req, res) {
     return res.send('API is running');

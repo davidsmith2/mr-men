@@ -39,7 +39,7 @@ $(function () {
         sPaginationType: 'full_numbers'
     });
 
-    $('#create_pdf_form').submit(function () {
+    $('#download_form').submit(function (e) {
         blockUIForDownload();
     });
 
