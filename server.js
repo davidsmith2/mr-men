@@ -100,7 +100,6 @@ app.post('/download', function (req, res) {
         if (!err) {
             res.cookie('fileDownloadToken', req.body.download_token_value_id, { maxAge: 900000, httpOnly: false} );
             res.attachment(filename);
-            res.send(200);
 
             books.forEach(function (book) {
                 var data = [];
@@ -112,6 +111,8 @@ app.post('/download', function (req, res) {
 
                 res.write(data + '\n');
             });
+
+            res.end();
 
         } else {
             return console.log(err);
