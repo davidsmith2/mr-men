@@ -4,7 +4,7 @@ var express = require('express'),
     cons = require('consolidate');
 
 var app = express(),
-    databaseUrl = 'mongodb://localhost/mr_men_database';
+    databaseUrl = 'mongodb://localhost/mr-men';
 
 app.engine('dust', cons.dust);
 
